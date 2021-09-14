@@ -29,5 +29,7 @@ Host gitlab.test.com
   ![avatar](./pic/gitlab1.png)
   
   ## 本地代码和远程仓库关联
-  
-https://github.com/me-Minion/minion.git
+- 在项目根目录打开git命令行，输入 `git init`创建本地仓库。
+- 将本地代码全部提交进本地仓库.`git commit -am "提交注释"`
+- 将本地仓库和远程仓库关联起来。`git remote add origin git远程地址`
+- 将本地代码提交至远程仓库。`git push -u origin master`
