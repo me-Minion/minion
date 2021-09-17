@@ -28,9 +28,16 @@ Host gitlab.test.com
   
   ![avatar](./pic/gitlab1.png)
   
-  ## 本地代码和远程仓库关联
+## 本地代码和远程仓库关联
 - 在项目根目录打开git命令行，输入 `git init`创建本地仓库。
 - 将本地代码全部提交进本地仓库.`git commit -am "提交注释"`
 - 将本地仓库和远程仓库关联起来。`git remote add origin git远程地址`
 - 将本地代码提交至远程仓库。`git push -u origin master` 
-- asda
+
+## 设置项目配置（指定项目user.name）
+
+- 配置分为global和local
+  - `git config --global --list`获取global配置的信息
+  - `git config --local --list`获取local配置信息
+  - `git config --local user.name="提交人名称"`指定项目的名称
+
