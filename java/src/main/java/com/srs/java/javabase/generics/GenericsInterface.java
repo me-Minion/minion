@@ -19,6 +19,10 @@ class GenericsInterfaceImpl<T> implements  GenericsInterface<T> {
 
 class GenericsInterfaceImpl1 implements  GenericsInterface<String> {
 
+    /**
+     *
+     * @param s 此处只能用String类型
+     */
     @Override
     public void show(String s) {
         System.out.println(s);

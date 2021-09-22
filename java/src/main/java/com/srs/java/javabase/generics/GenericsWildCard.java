@@ -30,6 +30,11 @@ public class GenericsWildCard {
         wildCard.show2(fatherList);
         wildCard.show2(sonList);
 //        wildCard.show2(grandsonList);
+
+//        wildCard.say(new Person());
+        wildCard.say(new Father());
+        wildCard.say(new Son());
+        wildCard.say(new Grandson());
     }
 
     /**
@@ -60,6 +65,15 @@ public class GenericsWildCard {
         }
     }
 
+
+
+    public <T extends Father> void say(T t) {
+
+    }
+
+    public <T> T say1(T t) {
+        return t;
+    }
 
 
 }

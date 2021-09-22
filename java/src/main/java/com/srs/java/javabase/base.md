@@ -55,20 +55,54 @@ public class GenericsClass<T> {
 ```java
 public class GenericsMethod {
 
+    /**
+     * 入参为任意类型
+     * @param t
+     * @param <T>
+     */
     public <T> void print(T t) {
         System.out.println(t);
     }
 
+    /**
+     * 限定入参T为Father及其子类
+     * @param t
+     * @param <T>
+     */
+    public <T extends Father> void print1(T t) {
+        System.out.println(t);
+    }
+
+    /**
+     * <T> T 写法表示返回类型和入参类型一致。
+     * @param t
+     * @param <T>
+     */
+    public <T> T print4(T t) {
+        return t;
+    }
+
     public static void main(String[] args) {
         GenericsMethod method = new GenericsMethod();
-        method.print(123);
-        method.print(123L);
-        method.print(123F);
-        method.print(123D);
-        method.print("123");
+        method.print(new Person());
+        method.print(new Father());
+        method.print(new Son());
+        method.print(new Grandson());
+
+//        method.print1(new Person());
+        method.print1(new Father());
+        method.print1(new Son());
+        method.print1(new Grandson());
+
+        Person person = method.print4(new Person());
+        Father father = method.print4(new Father());
+        Son son = method.print4(new Son());
+        Grandson grandson = method.print4(new Grandson());
     }
 }
 ```
+>  \<T> T
+>  表示返回类型为T（即为任意类型）。</br>泛型方法中没有super，只有extends。
 ### 4. 泛型类的子类
 > 泛型也是一个java类，它也具有继承的特性。泛型类的继承可以分为两类：
 #### 4.1 明确类型参数变量
@@ -109,11 +143,12 @@ class GenericsInterfaceImpl<T> implements  GenericsInterface<T> {
 public class GenericsWildCard {
 
     public static void main(String[] args) {
-        GenericsWildCard wildCard = new GenericsWildCard();
         List<Person> personList = new ArrayList<>();
         List<Father> fatherList = new ArrayList<>();
         List<Son> sonList = new ArrayList<>();
         List<Grandson> grandsonList = new ArrayList<>();
+        
+        GenericsWildCard wildCard = new GenericsWildCard();
         wildCard.show(personList);
         wildCard.show(fatherList);
         wildCard.show(sonList);
@@ -141,11 +176,12 @@ class Grandson extends Son{}
 public class GenericsWildCard {
 
     public static void main(String[] args) {
-        GenericsWildCard wildCard = new GenericsWildCard();
         List<Person> personList = new ArrayList<>();
         List<Father> fatherList = new ArrayList<>();
         List<Son> sonList = new ArrayList<>();
         List<Grandson> grandsonList = new ArrayList<>();
+        
+        GenericsWildCard wildCard = new GenericsWildCard();
 //        wildCard.show1(personList);
         wildCard.show1(fatherList);
         wildCard.show1(sonList);
@@ -167,17 +203,18 @@ class Father extends Person{}
 class Son extends Father{}
 class Grandson extends Son{}
 ```
-> 这样的写法的含义为：List集合装载的元素只能是Number自身或其子类（Number类型是所有数值类型的父类）
+> 这样的写法的含义为：List集合装载的元素只能是Father自身或其子类
 #### 5.3 super 通配符
 ```java
 public class GenericsWildCard {
 
     public static void main(String[] args) {
-        GenericsWildCard wildCard = new GenericsWildCard();
         List<Person> personList = new ArrayList<>();
         List<Father> fatherList = new ArrayList<>();
         List<Son> sonList = new ArrayList<>();
         List<Grandson> grandsonList = new ArrayList<>();
+        
+        GenericsWildCard wildCard = new GenericsWildCard();
         wildCard.show2(personList);
         wildCard.show2(fatherList);
         wildCard.show2(sonList);
@@ -199,7 +236,7 @@ class Father extends Person{}
 class Son extends Father{}
 class Grandson extends Son{}
 ```
-
+> 这样的写法的含义为：List集合装载的元素只能是Son自身或其父类
 ## <a name="divtop"> 反射 </a>
 ## <a name="divtop"> 注解 </a>
 ## <a name="divtop"> 输入输出流 </a>
