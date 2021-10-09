@@ -34,10 +34,10 @@ Host gitlab.test.com
 - 将本地仓库和远程仓库关联起来。`git remote add origin git远程地址`
 - 将本地代码提交至远程仓库。`git push -u origin master` 
 
-## 设置项目配置（指定项目user.name）
+## 设置项目配置（指定本地user.name）
 
 - 配置分为global和local
   - `git config --global --list`获取global配置的信息
   - `git config --local --list`获取local配置信息
-  - `git config --local user.name="提交人名称"`指定项目的名称
+  - `git config --local user.name "提交人名称"`指定user.name
 
