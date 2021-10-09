@@ -20,8 +20,12 @@ public class Dog extends Pet {
         return new Dog();
     }
 
+    /**
+     * 同一包，子孙类可访问
+     */
     @Override
     protected void protectedMethod() {
+        //调用父类受保护的方法
         super.protectedMethod();
     }
 
