@@ -1,5 +1,7 @@
 package com.srs.java.javabase.generics;
 
+import com.srs.java.javabase.innerclass.Car1;
+
 /**
  * 泛型类
  * @author shaorensheng
@@ -22,6 +24,7 @@ public class GenericsClass<T> {
         genericsClass.setNumber(123L);
         System.out.println(genericsClass.getNumber());
     }
+
 
 
 }
