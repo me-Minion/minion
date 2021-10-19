@@ -114,7 +114,7 @@ public class Car {
 静态内部类也称为嵌套类，是使用<font color=blue> static </font>关键字修饰的内部类。
 ```java
 public class Car1 {
-    static class Engine {
+    static class Engine1 {
         public void run() {
             System.out.println("我是静态内部类的run()方法");
             System.out.println("发动机启动了");
@@ -124,14 +124,63 @@ public class Car1 {
 ```
 
 #### 2.2.2 实例化
-静态内部类的实例化，可以不依赖外部类的对象直接创建。
+静态内部类的实例化，可以不依赖外部类的对象直接创建。 
+在同一类中：
 ```
-Engine engine = new Engine();
-engine.run();
+Engine1 engine1 = new Engine1();
+engine1.run();
 ```
+在同一包中：
+```
+Car.Engine1 engine1 = new Car1.Engine1();
+engine1.run();
+```
+其它地方无法访问
+
+#### 2.2.3 成员的访问
+在静态内部类中，只能访问外部类中的静态成员或方法。 
+
+属性或方法名相同时，可以通过<font color=blue> 外部类名.静态成员（静态方法）
+</font>的方式进行调用。
 
 ### 2.3 方法内部类
+#### 2.3.1 定义
+方法内部类，是定义在方法中的内部类，也称局部内部类。
+```java
+public class Car2 {
+    void run() {
+        class Engine2 {
+            void run() {
+                System.out.println("方法内部类Engine的run()");
+            }
+        }
+        Engine2 engine2 = new Engine2();
+        engine2.run();
+    }
+    
+    public static void main(String[] args){
+      Car2 car2 = new Car2();
+      car2.run();
+    }
+}
+```
+运行结果：
+```
+方法内部类Engine的run()
+```
+
+在调用方法内部类的<font color=blue > run() </font>方法，必须在方法内对<font
+color=blue > Engine2 </font>类进行实例化，再去调用其 <font color=blue >
+run() </font>方法， 然后通过外部类调用自身方法的方式让内部类方法执行。
+
+#### 2.3.2 特点
+与局部变量相同，局部内部类也有以下特点：
+* 方法内定义的局部内部类只能在方法内部使用；
+* 方法内不能定义静态成员；
+* 不能使用访问修饰符。
+
 ### 2.4 匿名内部类
+匿名内部类就是没有名字的内部类。使用匿名内部类，通常令其实现一个抽象类或接口。
 
 ## 3. 作用
 ### 3.1 封装性
