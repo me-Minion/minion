@@ -6,6 +6,7 @@ package com.srs.java.javabase.innerclass;
  */
 public class Car1 {
 
+
     //静态内部类
     static class Engine{
         public void run() {
