@@ -180,9 +180,121 @@ run() </font>方法， 然后通过外部类调用自身方法的方式让内部
 * 不能使用访问修饰符。
 
 ### 2.4 匿名内部类
-匿名内部类就是没有名字的内部类。使用匿名内部类，通常令其实现一个抽象类或接口。
+#### 2.4.1 定义
+匿名内部类就是没有名字的内部类。使用匿名内部类，<font
+color=blue>通常令其实现一个抽象类或接口</font>。 【详见：Transport】
+
+#### 2.4.2 特点
+* 含有匿名内部类的类被编译之后，匿名内部类会单独生成一个字节码文件，文件名的命名方式为：
+  <font
+  color=blue>外部类名称$数字.class</font>。Transport编译后，生成的字节码文件：
+```
+Transport$1.class
+Transport$2.class
+Transport.class
+```
+* 匿名内部类没有类型名称和实例对象名称；
+* 匿名内部类可以继承父类也可以实现接口，但二者不可兼得；
+* 匿名内部类无法使用访问修饰符、static、abstract关键字修饰；
+* 匿名内部类无法编写构造方法，因为它没有类名
+* 匿名内部类中不能出现静态成员。
+
+#### 2.4.2 使用场景
+由于匿名内部类没有名称，类的定义和实例化可以放到一起，这样可以简化代码的编写，同时也让代码变得不易阅读。
+当我们在代码中只用到类的一个实例、方法只调用一次，可以使用匿名内部类。
 
 ## 3. 作用
 ### 3.1 封装性
+内部类的成员通过外部类才能访问，对成员信息有更好的隐藏，因此内部类实现了更好的封装。
+
 ### 3.2 实现多继承
+Java不支持多继承，而接口可以实现多继承的效果，但实现接口就必须实现里面所有的方法，
+有时候我们的需求只是实现其中某个方法，内部类就可以解决这些问题。
+
+```java
+public class SuperClass1 {
+    void method1(){
+        System.out.println("SuperClass1.method1()");
+    }
+}
+
+public class SuperClass2 {
+    void method2(){
+        System.out.println("SuperClass2.method2()");
+    }
+}
+
+public class SubClass {
+    
+    //通过内部类继承SuperClass1
+    class InnerClass1 extends SuperClass1 {
+        @Override 
+        void method1() {
+            System.out.println("InnerClass1.method1()");
+        }
+    }
+    
+    //通过内部类继承SuperClass2
+    class InnerClass2 extends SuperClass2 {
+        @Override 
+        void method2() {
+            System.out.println("InnerClass2.method2()");
+        }
+    }
+    
+    public static void main(String[] args){
+        //通过内部类的方式实现多继承
+        InnerClass1 innerClass1 = new SubClass().new InnerClass1();
+        InnerClass2 innerClass2 = new SubClass().new InnerClass2();
+        innerClass1.method1();
+        innerClass2.method2();
+    }
+}
+```
+
 ### 3.3 解决继承或实现接口是的方法同名问题
+```java
+public class One {
+    public void test() {
+        
+    }
+}
+
+public interface Two {
+    void test();
+}
+
+public class demo extends One implements Two {
+    @Override 
+    public void test() {
+        
+    }
+}
+```
+如上代码中，无法确定Demo中的test()方法是父类One中的test还是接口Two中的test。
+
+内部类可以解决这个问题
+```java
+public class Demo2 extends One {
+    @Override 
+    public void test() {
+        System.out.println("在外部类重写父类中的test()");
+    }
+    
+    class InnerClass implements Two {
+        @Override 
+        public void test() {
+            System.out.println("在内部类实现接口的test()");
+        }
+    }
+    
+    public static void main(String[] args){
+      Demo2 demo2 = new Demo2();
+      demo2.test();
+      //实例化内部类
+      InnerClass innerClass = demo2.new InnerClass();
+      //调用内部类方法
+      innerClass.test();
+    }
+}
+```
