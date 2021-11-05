@@ -8,7 +8,7 @@
     - [抽象类](abstractdemo/ABSTRACT.md)
     - [接口](interfacedemo/INTERFACE.md)
     - [内部类](innerclass/INNERCLASS.md)
-    - [关键字](#关键字)
+    - [关键字](keyword/KEYWORD.md)
 + 融合
     - [泛型](generics/GENERICS.md)
     - [反射](#反射)
