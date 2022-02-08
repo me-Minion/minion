@@ -116,7 +116,7 @@ class GenericsInterfaceImpl<T> implements  GenericsInterface<T> {
 ## 5. 类型通配符
 ### 5.1 无限定通配符
 ```java
-public class GenericsWildCard {
+import java.lang.Object;public class GenericsWildCard {
 
     public static void main(String[] args) {
         List<Person> personList = new ArrayList<>();
@@ -182,7 +182,7 @@ class Grandson extends Son{}
 > 这样的写法的含义为：List集合装载的元素只能是Father自身或其子类
 ### 5.3 super 通配符
 ```java
-public class GenericsWildCard {
+import java.lang.Object;public class GenericsWildCard {
 
     public static void main(String[] args) {
         List<Person> personList = new ArrayList<>();
