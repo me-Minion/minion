@@ -19,6 +19,11 @@ Host gitlab.test.com
     HostName    gitlab.test.com
     User    gitlab
     IdentityFile    ~/.ssh/id_rsa_lab
+    
+Host gitee.com
+	HostName	gitee.com
+	User gitlab
+	IdentityFile	~/.ssh/id_ed25519
 ```
 - 测试验证
   - ssh -T git@github.com 
@@ -27,6 +32,8 @@ Host gitlab.test.com
   - ssh -T git@gitlab.com
   
   ![avatar](./pic/gitlab1.png)
+  
+  - ssh -T gitee@gitee.com
   
 ## 本地代码和远程仓库关联
 - 在项目根目录打开git命令行，输入 `git init`创建本地仓库。
